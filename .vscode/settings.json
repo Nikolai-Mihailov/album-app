@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+      "gitDecoration.conflictingResourceForeground": "#00AA00",
+      "sideBar.foreground": "#f0eaea"
+    },
+    "editor.tokenColorCustomizations": {
+      "comments": "#e8d9d9"
+    }
+  }
