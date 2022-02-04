@@ -1,6 +1,6 @@
 import { albumsAction } from "../albums";
 
-export const fetchData = () => {
+export const fetchAlbums = () => {
     return async (dispatch) => {
         const fetchApi = async () => {
             const response = await fetch('https://jsonplaceholder.typicode.com/photos');

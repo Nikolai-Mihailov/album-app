@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchData } from '../../store/slices/actions/fetchData';
+import { fetchAlbums } from '../../store/slices/actions/fetchAlbums';
 import { Grid, Container } from '@mui/material'
 
 import CardComponent from '../UI/Card';
-import HeaderComponent from '../UI/Header';
 
 
 function AlbumsComponent() {
@@ -27,20 +26,19 @@ function AlbumsComponent() {
     });
 
     useEffect(() => {
-        dispatch(fetchData())
+        dispatch(fetchAlbums())
     }, [dispatch]);
 
     const albums = result.map((item, index) => {
         return (
             <Grid item xs key={index}>
-                <CardComponent albumNumver={item.albumId} thumbnailUrl={item.thumbnailUrl} />
+                <CardComponent albumNumber={item.albumId} thumbnailUrl={item.thumbnailUrl} />
             </Grid>
         )
     });
 
     return (
         <div>
-            <HeaderComponent />
             <Container disableGutters maxWidth="true" >
                 <Grid container spacing={3} pr={2} pl={2} alignItems="center" style={{ minHeight: "90vh" }}>
                     {albums}
