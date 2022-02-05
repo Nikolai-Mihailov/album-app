@@ -13,7 +13,6 @@ const gallerySlice = createSlice({
         },
         setGalleryToInitialState(state, action) {
             action.payload = { ...initialState }
-            // console.log(action.payload)
         }
     }
 });

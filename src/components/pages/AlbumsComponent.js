@@ -38,7 +38,7 @@ function AlbumsComponent() {
 
     const albums = result.map((item, index) => {
         return (
-            <Grid item xs key={index}>
+            <Grid item xs={6} sm={6} md={4} lg={4} key={index}>
                 <CardComponent albumNumber={item.albumId} thumbnailUrl={item.thumbnailUrl} />
             </Grid>
         )
@@ -46,9 +46,9 @@ function AlbumsComponent() {
 
     return (
         <div>
-            <Container disableGutters maxWidth="true" >
+            <Container disableGutters  >
                 {data.isLoading ? <SpinnerComponent /> :
-                    <Grid container spacing={3} pr={2} pl={2} alignItems="center" style={{ minHeight: "90vh" }}>
+                    <Grid container spacing={2} justifyContent="center" alignItems="center">
                         {albums}
                     </Grid>}
             </Container>

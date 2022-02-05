@@ -8,16 +8,19 @@ import storage from 'redux-persist/lib/storage';
 import albumsReducer from './slices/albums';
 import galleryReducer from './slices/gallery';
 import favouritesReducer from './slices/favourites';
+import messageReducer from './slices/message';
 
 const redusers = combineReducers({
     albums: albumsReducer,
     gallery: galleryReducer,
-    favourites: favouritesReducer
+    favourites: favouritesReducer,
+    message: messageReducer
 })
 
 const persistConfig = {
     key: 'favourites',
-    storage
+    storage,
+    blacklist: ['albums', 'message']
 };
 
 const persisteReducer = persistReducer(persistConfig, redusers);

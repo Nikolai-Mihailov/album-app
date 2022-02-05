@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import ImageListComponent from '../UI/Gallery';
 import SpinnerComponent from '../UI/Spinner';
+import { add } from '../../store/slices/favourites'
 
 function GalleryComponent() {
 
@@ -20,7 +21,7 @@ function GalleryComponent() {
         <div>
             {
                 data.isLoading ? <SpinnerComponent /> :
-                    <ImageListComponent items={data.items} />
+                    <ImageListComponent items={data.items} action={add} notificationType='success' customMessage="added successfuly" />
             }
         </div>
     );

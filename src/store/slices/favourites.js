@@ -8,16 +8,10 @@ const favouritesSlice = createSlice({
     reducers: {
         add(state, action) {
             const itemExists = state.find(item => item.albumId === action.payload.albumId && item.id === action.payload.id);
-
-            !itemExists ? state.push({ ...action.payload, liked: true }) :
-                state = removeItem(state, action.payload);
-
+            !itemExists && state.push({ ...action.payload, liked: true })
         },
         remove(state, action) {
             state = removeItem(state, action.payload);
-        },
-        liked(state, action) {
-            state = state.items;
         }
     }
 });

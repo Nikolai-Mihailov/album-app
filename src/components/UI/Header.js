@@ -15,14 +15,14 @@ export default function HeaderComponent() {
     const favourites = useSelector(state => state.favourites);
 
     return (
-        <Box sx={{ flexGrow: 1 }} pb={3}>
+        <Box sx={{ flexGrow: 1 }} pb={1}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" sx={{ display: { xs: 'none', sm: 'block' } }} >
+                    <Typography variant="h6" sx={{ display: { sm: 'block' } }} >
                         Albums
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box >
                         <Link to="favourites" style={{ color: '#FFF' }}>
                             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                                 <Badge badgeContent={favourites.length} color="error">

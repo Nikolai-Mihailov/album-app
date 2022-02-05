@@ -6,6 +6,7 @@ import AlbumsComponent from './components/pages/AlbumsComponent';
 import GalleryComponent from './components/pages/GalleryComponent';
 import HeaderComponent from "./components/UI/Header";
 import FavouritesComponent from "./components/pages/FavouritesComponent";
+// import FooterComponent from "./components/UI/Footer";
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
           <Route path="/favourites" element={<FavouritesComponent />} />
         </Routes>
       </main>
+      {/* <footer>
+        <FooterComponent />
+      </footer> */}
     </div>
 
   );

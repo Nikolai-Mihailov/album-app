@@ -10,7 +10,7 @@ function CardComponent(props) {
     return (
         <div>
             <Link to={"/gallery/" + props.albumNumber}>
-                <Card sx={{ minWidth: 200 }}>
+                <Card>
                     <CardActionArea>
                         <CardMedia
                             component="img"
@@ -18,7 +18,14 @@ function CardComponent(props) {
                             alt="green iguana"
                         />
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="h5" component="div" sx={{
+                                fontSize: {
+                                    lg: 20,
+                                    md: 20,
+                                    sm: 15,
+                                    xs: 10
+                                }
+                            }}>
                                 Album {props.albumNumber}
                             </Typography>
                         </CardContent>
