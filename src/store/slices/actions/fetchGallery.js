@@ -1,4 +1,4 @@
-import { galleryAction } from "../gallery";
+import { getGallery } from "../gallery";
 
 export const fetchGallery = (id) => {
     return async (dispatch) => {
@@ -9,16 +9,15 @@ export const fetchGallery = (id) => {
             }
 
             const data = await response.json();
-            return data.filter(item => item.albumId <= 5);
+            return data.filter(item => item.albumId <= 5).map(item => ({ ...item, liked: false }));
         }
 
         try {
             const data = await fetchApi();
-            dispatch(galleryAction.getGallery({ items: data || [], isLoading: false, errorMsg: '' }))
+            dispatch(getGallery({ items: data || [], isLoading: false, errorMsg: '' }))
         } catch (error) {
             // To do
             throw new Error(error.message)
         }
-
     }
 }

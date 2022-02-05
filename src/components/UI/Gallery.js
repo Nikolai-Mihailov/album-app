@@ -2,25 +2,21 @@ import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { add } from '../../store/slices/favourites';
+import { useDispatch } from 'react-redux';
+export default function ImageListComponent({ items }) {
 
-export default function ImageListComponent(props) {
-
-    const data = props.items;
-    console.log(data)
+    const data = items;
+    const dispatch = useDispatch();
 
     return (
-        <ImageList sx={{ width: 500, height: 450 }}>
-            <ImageListItem key="Subheader" cols={2}>
-                <ListSubheader component="div">December</ListSubheader>
-            </ImageListItem>
-            {/* {itemData.map((item) => (
-                <ImageListItem key={item.img}>
+        <ImageList variant='quilted' cols={6} rowHeight={350} gap={5}>
+            {data.map((item) => (
+                <ImageListItem key={item.id} >
                     <img
-                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.thumbnailUrl}?w=248&fit=crop&auto=format`}
                         alt={item.title}
                         loading="lazy"
                     />
@@ -29,15 +25,15 @@ export default function ImageListComponent(props) {
                         subtitle={item.author}
                         actionIcon={
                             <IconButton
-                                sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                                 aria-label={`info about ${item.title}`}
-                            >
-                                <InfoIcon />
+                                onClick={() => dispatch(add(item))}
+                                sx={{ color: item.liked ? 'red' : 'rgba(255, 255, 255, 0.54)' }}>
+                                <FavoriteIcon color='danger' />
                             </IconButton>
                         }
                     />
                 </ImageListItem>
-            ))} */}
+            ))}
         </ImageList>
     );
 }

@@ -4,17 +4,20 @@ import { fetchAlbums } from '../../store/slices/actions/fetchAlbums';
 import { Grid, Container } from '@mui/material'
 
 import CardComponent from '../UI/Card';
+import SpinnerComponent from '../UI/Spinner';
+import { setGalleryToInitialState } from '../../store/slices/gallery';
 
 
 function AlbumsComponent() {
 
     const map = new Map();
     const result = [];
-    const data = useSelector(state => state.albums.items);
+    const data = useSelector(state => state.albums);
     const dispatch = useDispatch();
 
+
     // Get the unique albums ID whit thumbnailUrl
-    data.forEach(item => {
+    data.items.forEach(item => {
         if (!map.has(item.albumId)) {
 
             map.set(item.albumId, true)
@@ -24,6 +27,10 @@ function AlbumsComponent() {
             })
         }
     });
+    // TO DO
+    useEffect(() => {
+        dispatch(setGalleryToInitialState())
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchAlbums())
@@ -40,9 +47,10 @@ function AlbumsComponent() {
     return (
         <div>
             <Container disableGutters maxWidth="true" >
-                <Grid container spacing={3} pr={2} pl={2} alignItems="center" style={{ minHeight: "90vh" }}>
-                    {albums}
-                </Grid>
+                {data.isLoading ? <SpinnerComponent /> :
+                    <Grid container spacing={3} pr={2} pl={2} alignItems="center" style={{ minHeight: "90vh" }}>
+                        {albums}
+                    </Grid>}
             </Container>
         </div>
     );

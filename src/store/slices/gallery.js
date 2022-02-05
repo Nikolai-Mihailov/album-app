@@ -10,9 +10,15 @@ const gallerySlice = createSlice({
             state.items = action.payload.items;
             state.isLoading = action.payload.isLoading;
             state.errorMsg = action.payload.errorMsg
+        },
+        setGalleryToInitialState(state, action) {
+            action.payload = { ...initialState }
+            // console.log(action.payload)
         }
     }
 });
 
-export const galleryAction = gallerySlice.actions;
+
+
+export const { getGallery, setGalleryToInitialState } = gallerySlice.actions;
 export default gallerySlice.reducer;
