@@ -8,6 +8,7 @@ import MessageComponent from './Message';
 import { update } from '../../store/slices/message';
 import { useDispatch } from 'react-redux';
 
+
 export default function ImageListComponent({ items, action, notificationType, customMessage }) {
 
     const data = items;

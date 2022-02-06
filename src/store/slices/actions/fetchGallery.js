@@ -1,23 +1,15 @@
-import { getGallery } from "../gallery";
+import axios from "axios";
+import { updateSuccess, updateStart, updateError } from "../gallery";
 
 export const fetchGallery = (id) => {
     return async (dispatch) => {
-        const fetchApi = async () => {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`);
-            if (!response.ok) {
-                throw new Error('Could not fetch data...')
-            }
-
-            const data = await response.json();
-            return data.filter(item => item.albumId <= 5).map(item => ({ ...item, liked: false }));
-        }
-
+        dispatch(updateStart());
         try {
-            const data = await fetchApi();
-            dispatch(getGallery({ items: data || [], isLoading: false, errorMsg: '' }))
+            const res = await axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`);
+            const data = res.data.filter(item => item.albumId <= 5).map(item => ({ ...item, liked: false }));
+            dispatch(updateSuccess({ items: data || [], isLoading: false, errorMsg: '' }))
         } catch (error) {
-            // To do
-            throw new Error(error.message)
+            dispatch(updateError({ errorMsg: error || error.message }))
         }
     }
 }

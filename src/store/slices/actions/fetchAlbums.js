@@ -1,24 +1,18 @@
-import { albumsAction } from "../albums";
+import axios from "axios";
+import { updateStart, updateSuccess, updateError } from "../albums";
 
 export const fetchAlbums = () => {
     return async (dispatch) => {
-        const fetchApi = async () => {
-            const response = await fetch('https://jsonplaceholder.typicode.com/photos');
-            if (!response.ok) {
-                throw new Error('Could not fetch data...')
-            }
-
-            const data = await response.json();
-            return data.filter(item => item.albumId <= 5);
-        }
-
+        dispatch(updateStart());
         try {
-            const data = await fetchApi();
-            dispatch(albumsAction.getAlbums({ items: data || [], isLoading: false, errorMsg: '' }))
-        } catch (error) {
-            // To do
-            throw new Error(error.message)
-        }
+            const res = await axios.get('https://jsonplaceholder.typicode.com/photos');
+            const data = res.data.filter(item => item.albumId <= 5);
+            dispatch(updateSuccess({ items: data }))
 
+        } catch (error) {
+            // In production we need to have custom errors. It's not good practice to return actual errors to the customers.
+            dispatch(updateError({ errorMsg: error || error.message }))
+        }
     }
 }
+

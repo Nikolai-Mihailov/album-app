@@ -6,10 +6,21 @@ const gallerySlice = createSlice({
     name: 'gallery',
     initialState,
     reducers: {
-        getGallery(state, action) {
+        updateStart(state) {
+            state.items = [];
+            state.isLoading = true;
+            state.errorMsg = '';
+        },
+        updateSuccess(state, action) {
             state.items = action.payload.items;
-            state.isLoading = action.payload.isLoading;
-            state.errorMsg = action.payload.errorMsg
+            state.isLoading = false;
+            state.errorMsg = '';
+            console.log(action.items)
+        },
+        updateError(state, action) {
+            state.items = [];
+            state.isLoading = false;
+            state.errorMsg = action.payload.errorMsg;
         },
         setGalleryToInitialState(state, action) {
             action.payload = { ...initialState }
@@ -18,6 +29,5 @@ const gallerySlice = createSlice({
 });
 
 
-
-export const { getGallery, setGalleryToInitialState } = gallerySlice.actions;
+export const { updateStart, updateSuccess, updateError, setGalleryToInitialState } = gallerySlice.actions;
 export default gallerySlice.reducer;

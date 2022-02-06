@@ -6,13 +6,21 @@ const albumsSlice = createSlice({
     name: 'albums',
     initialState,
     reducers: {
-        getAlbums(state, action) {
+        updateStart(state) {
+            state.isLoading = true;
+        },
+        updateSuccess(state, action) {
             state.items = action.payload.items;
-            state.isLoading = action.payload.isLoading;
-            state.errorMsg = action.payload.errorMsg
+            state.isLoading = false;
+            state.errorMsg = '';
+        },
+        updateError(state, action) {
+            state.items = [];
+            state.isLoading = false;
+            state.errorMsg = action.payload.errorMsg;
         }
     }
 });
 
-export const albumsAction = albumsSlice.actions;
+export const { updateStart, updateSuccess, updateError } = albumsSlice.actions;
 export default albumsSlice.reducer;

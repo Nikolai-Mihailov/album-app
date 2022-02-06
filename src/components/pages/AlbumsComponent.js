@@ -5,8 +5,6 @@ import { Grid, Container } from '@mui/material'
 
 import CardComponent from '../UI/Card';
 import SpinnerComponent from '../UI/Spinner';
-import { setGalleryToInitialState } from '../../store/slices/gallery';
-
 
 function AlbumsComponent() {
 
@@ -14,7 +12,6 @@ function AlbumsComponent() {
     const result = [];
     const data = useSelector(state => state.albums);
     const dispatch = useDispatch();
-
 
     // Get the unique albums ID whit thumbnailUrl
     data.items.forEach(item => {
@@ -27,10 +24,6 @@ function AlbumsComponent() {
             })
         }
     });
-    // TO DO
-    useEffect(() => {
-        dispatch(setGalleryToInitialState())
-    }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchAlbums())
