@@ -15,19 +15,19 @@ const gallerySlice = createSlice({
             state.items = action.payload.items;
             state.isLoading = false;
             state.errorMsg = '';
-            console.log(action.items)
         },
         updateError(state, action) {
             state.items = [];
             state.isLoading = false;
             state.errorMsg = action.payload.errorMsg;
         },
-        setGalleryToInitialState(state, action) {
-            action.payload = { ...initialState }
+        selectedAsFavourite(state, action) {
+            console.log(action.payload)
+            const itemIndex = state.items.findIndex(item => item.albumId === action.payload.albumId && item.id === action.payload.id);
+            state.items[itemIndex].liked = true;
         }
-    }
+    },
 });
 
-
-export const { updateStart, updateSuccess, updateError, setGalleryToInitialState } = gallerySlice.actions;
+export const { updateStart, updateSuccess, updateError, selectedAsFavourite } = gallerySlice.actions;
 export default gallerySlice.reducer;

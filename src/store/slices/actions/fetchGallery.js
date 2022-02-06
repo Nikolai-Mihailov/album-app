@@ -9,6 +9,7 @@ export const fetchGallery = (id) => {
             const data = res.data.filter(item => item.albumId <= 5).map(item => ({ ...item, liked: false }));
             dispatch(updateSuccess({ items: data || [], isLoading: false, errorMsg: '' }))
         } catch (error) {
+            // In production we need to have custom errors. It's not good practice to return actual error to the customers.
             dispatch(updateError({ errorMsg: error || error.message }))
         }
     }

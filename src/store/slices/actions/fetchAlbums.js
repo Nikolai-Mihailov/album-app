@@ -10,8 +10,8 @@ export const fetchAlbums = () => {
             dispatch(updateSuccess({ items: data }))
 
         } catch (error) {
-            // In production we need to have custom errors. It's not good practice to return actual errors to the customers.
-            dispatch(updateError({ errorMsg: error || error.message }))
+            // In production we need to have custom errors. It's not good practice to return actual error to the customers.
+            dispatch(updateError({ errorMsg: error || error.message }));
         }
     }
 }

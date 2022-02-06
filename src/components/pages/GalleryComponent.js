@@ -21,7 +21,7 @@ function GalleryComponent() {
         <div>
             {
                 data.isLoading ? <SpinnerComponent /> :
-                    <ImageListComponent items={data.items} action={add} notificationType='success' customMessage="added successfuly" />
+                    <ImageListComponent items={data.items} action={add} actionType="adding" notificationType='success' customMessage="added successfuly" />
             }
         </div>
     );
